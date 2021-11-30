@@ -1,7 +1,7 @@
 package cn.luoyudi.pojo;
 
 public class User {
-    int id;
+    Integer id;
     String name;
     String gender;
     int age;
@@ -11,7 +11,7 @@ public class User {
     String username;
     String password;
 
-    public User(int id, String name, String gender, int age, String address, String qq, String email, String username, String password) {
+    public User(Integer id, String name, String gender, int age, String address, String qq, String email, String username, String password) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -41,11 +41,11 @@ public class User {
                 '}';
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

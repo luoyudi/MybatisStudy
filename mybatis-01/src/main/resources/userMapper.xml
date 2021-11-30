@@ -5,8 +5,34 @@
 
 <!--namespace 绑定一个mapper-->
 <mapper namespace="cn.luoyudi.dao.UserMapper">
-<!--    查询语句 resultType 返回值类型-->
+    <!--    查询语句 resultType 返回值类型-->
     <select id="getUserList" resultType="cn.luoyudi.pojo.User">
-        select * from user;
+        select *
+        from user;
     </select>
+
+    <select id="getUserById" resultType="cn.luoyudi.pojo.User" parameterType="int">
+        select *
+        from user
+        where id = #{id};
+    </select>
+
+    <insert id="addUser" parameterType="cn.luoyudi.pojo.User">
+        insert into user(name, gender, age, address, qq, email, username, password)
+            VALUE (#{name}, #{gender}, #{age}, #{address}, #{qq}, #{email}, #{username}, #{password});
+    </insert>
+
+    <update id="updateUser" parameterType="cn.luoyudi.pojo.User">
+        update user
+        set name  = #{name},
+            gender=#{gender},
+            age=#{age}
+        where id = #{id};
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete
+        from user
+        where id = #{id};
+    </delete>
 </mapper>
