@@ -20,4 +20,7 @@ public interface UserMapper {
 
 //    使用map集合
     int addUser2(Map<String,Object> map);
+
+//    使用模糊查询查询用户信息
+    List<User> getUserListLike(String value);
 }

@@ -42,4 +42,11 @@
         VALUE (#{userName}, #{userGender}, #{userAge}, #{userAddress}, #{userQQnum},
         #{userEmail} <!--#{username_}, #{Userpassword}-->);
     </insert>
+
+    <!--    模糊查询操作-->
+    <select id="getUserListLike" resultType="cn.luoyudi.pojo.User">
+        select *
+        from user
+        where name like #{value};
+    </select>
 </mapper>

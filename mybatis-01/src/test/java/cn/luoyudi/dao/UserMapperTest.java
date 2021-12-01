@@ -91,4 +91,17 @@ public class UserMapperTest {
         sqlSession.commit();
         sqlSession.close();
     }
+
+    @Test
+    public void getUserListLikeTest() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
+        List<User> userListLike = mapper.getUserListLike("%张%");
+        for (User user : userListLike) {
+            System.out.println(user);
+        }
+
+        sqlSession.close();
+    }
 }
