@@ -35,4 +35,11 @@
         from user
         where id = #{id};
     </delete>
+
+    <!--匹配map集合中的key-->
+    <insert id="addUser2" parameterType="map">
+        insert into user(name, gender, age, address, qq, email<!--, username, password-->)
+        VALUE (#{userName}, #{userGender}, #{userAge}, #{userAddress}, #{userQQnum},
+        #{userEmail} <!--#{username_}, #{Userpassword}-->);
+    </insert>
 </mapper>

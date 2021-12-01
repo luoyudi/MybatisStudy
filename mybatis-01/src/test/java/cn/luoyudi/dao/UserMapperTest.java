@@ -5,7 +5,9 @@ import cn.luoyudi.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserMapperTest {
     @Test
@@ -63,6 +65,30 @@ public class UserMapperTest {
         int i = mapper.deleteUser(5);
         sqlSession.commit();
         System.out.println(i);
+        sqlSession.close();
+    }
+
+    @Test
+    public void addUserTest2() {
+//        使用map集合代替实体类
+//        在配置文件中取出map中的key匹配
+//        这种情况下可以少赋值***
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        map.put("userName", "你好");
+        map.put("userGender", "你好");
+        map.put("userAge", 99);
+        map.put("userAddress", "你好");
+        map.put("userQQnum", "你好");
+        map.put("userEmail", "你好");
+//        map.put("username_", "你好");
+//        map.put("Userpassword", "你好");
+
+        int i = mapper.addUser2(map);
+        System.out.println(i);
+        sqlSession.commit();
         sqlSession.close();
     }
 }
