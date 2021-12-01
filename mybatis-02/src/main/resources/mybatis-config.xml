@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!--引入外部配置文件-->
+    <properties resource="db.properties">
+        <!--此处还可以自定义一些配置文件中没有的属性 但是属性相同使用外部文件的值
+                    <property name="" value=""/>-->
+    </properties>
+
+    <typeAliases>
+        <!--        给全类名配置别名,降低冗余-->
+        <!--        <typeAlias type="cn.luoyudi.pojo.User" alias="User"/>-->
+        <!--        直接配置包,会扫描包下的实体类javabean 别名为实体类javabean的首字母小写名称(建议小写)-->
+        <!--        还可以配置注解在javabean中配置@Alias("")-->
+        <package name="cn.luoyudi.pojo"/>
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+
+        <environment id="test">
+            <transactionManager type="JDBC"/><!--事务管理器默认jdbc-->
+            <dataSource type="POOLED"><!--数据源 不使用数据库连接池UNPOOLED 使用数据库连接池默认POOLED 不做了解JNDI-->
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/db1"/>
+                <property name="username" value="root"/>
+                <property name="password" value="mysql"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!--        映射器-->
+        <mapper resource="Mapper/UserMapper.xml"/>
+        <!--        除了上面的注册方法,还有下面几个等注册方法-->
+        <!--        使用class-->
+        <!--        <mapper class="cn.luoyudi.dao.UserMapper"/>-->
+        <!--        使用包,扫描包下所有的mapper对象,并注册-->
+        <!--        <package name="cn.luoyudi.dao"/>-->
+        <!--        上面的方法要满足 配置文件与mapper对象文件在同一个包下,并且名称一样,否则报错-->
+    </mappers>
+</configuration>
