@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.luoyudi.dao.UserMapper">
+<!--    当出现javabean中的属性名称与数据库中的表的列名不同时,使用结果集映射resultMap在下面设置结果集映射方式-->
+    <select id="getUserById" resultMap="userMap" parameterType="int">
+        select *
+        from testusertable
+        where id = #{id};
+    </select>
+<!--    结果集映射-->
+    <resultMap id="userMap" type="user">
+<!--    column数据库中的字段 property实体类中的的字段 只需要把不相同的进行映射  -->
+<!--        <result column="id" property="id"/>-->
+<!--        <result column="name" property="name"/>-->
+        <result column="pwd" property="password"/>
+    </resultMap>
+</mapper>
